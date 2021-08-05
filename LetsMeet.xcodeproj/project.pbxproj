@@ -3,27 +3,37 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DDEDA0266E8FB5A6BFC99D1E /* Pods_LetsMeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC59DF4BF1EB0B78028F30F5 /* Pods_LetsMeet.framework */; };
+		EB36E21026BB7587002FFF1F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB36E20F26BB7587002FFF1F /* WelcomeViewController.swift */; };
+		EB36E21326BB75B3002FFF1F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB36E21226BB75B3002FFF1F /* RegisterViewController.swift */; };
+		EB963F8326B8D22300B34C19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB963F8226B8D22300B34C19 /* GoogleService-Info.plist */; };
 		EB97BDB326B7C0E700200F0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB97BDB226B7C0E700200F0A /* AppDelegate.swift */; };
 		EB97BDB526B7C0E700200F0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB97BDB426B7C0E700200F0A /* SceneDelegate.swift */; };
-		EB97BDB726B7C0E700200F0A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB97BDB626B7C0E700200F0A /* ViewController.swift */; };
 		EB97BDBA26B7C0E700200F0A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB97BDB826B7C0E700200F0A /* Main.storyboard */; };
 		EB97BDBC26B7C0E900200F0A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EB97BDBB26B7C0E900200F0A /* Assets.xcassets */; };
 		EB97BDBF26B7C0E900200F0A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EB97BDBD26B7C0E900200F0A /* LaunchScreen.storyboard */; };
+		EBE2FF3C26BBE87900295DBA /* FUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBE2FF3B26BBE87900295DBA /* FUser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		08A427A1EAE70F072D4A8C16 /* Pods-LetsMeet.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetsMeet.release.xcconfig"; path = "Target Support Files/Pods-LetsMeet/Pods-LetsMeet.release.xcconfig"; sourceTree = "<group>"; };
+		3F251137C39D8360768E2291 /* Pods-LetsMeet.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LetsMeet.debug.xcconfig"; path = "Target Support Files/Pods-LetsMeet/Pods-LetsMeet.debug.xcconfig"; sourceTree = "<group>"; };
+		CC59DF4BF1EB0B78028F30F5 /* Pods_LetsMeet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LetsMeet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EB36E20F26BB7587002FFF1F /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		EB36E21226BB75B3002FFF1F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		EB963F8226B8D22300B34C19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EB97BDAF26B7C0E700200F0A /* LetsMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetsMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB97BDB226B7C0E700200F0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EB97BDB426B7C0E700200F0A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EB97BDB626B7C0E700200F0A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EB97BDB926B7C0E700200F0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EB97BDBB26B7C0E900200F0A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EB97BDBE26B7C0E900200F0A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EB97BDC026B7C0E900200F0A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EBE2FF3B26BBE87900295DBA /* FUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FUser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,17 +41,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDEDA0266E8FB5A6BFC99D1E /* Pods_LetsMeet.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B17AD2EC08BDDD5CD36905A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CC59DF4BF1EB0B78028F30F5 /* Pods_LetsMeet.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C6EA17B191E5BB6112F45A4C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3F251137C39D8360768E2291 /* Pods-LetsMeet.debug.xcconfig */,
+				08A427A1EAE70F072D4A8C16 /* Pods-LetsMeet.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EB97BDA626B7C0E700200F0A = {
 			isa = PBXGroup;
 			children = (
 				EB97BDB126B7C0E700200F0A /* LetsMeet */,
 				EB97BDB026B7C0E700200F0A /* Products */,
+				C6EA17B191E5BB6112F45A4C /* Pods */,
+				B17AD2EC08BDDD5CD36905A3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +86,34 @@
 		EB97BDB126B7C0E700200F0A /* LetsMeet */ = {
 			isa = PBXGroup;
 			children = (
+				EBE2FF3F26BBED5500295DBA /* FirebaseServices */,
+				EBE2FF3E26BBED4200295DBA /* Controllers */,
 				EB97BDB226B7C0E700200F0A /* AppDelegate.swift */,
 				EB97BDB426B7C0E700200F0A /* SceneDelegate.swift */,
-				EB97BDB626B7C0E700200F0A /* ViewController.swift */,
 				EB97BDB826B7C0E700200F0A /* Main.storyboard */,
 				EB97BDBB26B7C0E900200F0A /* Assets.xcassets */,
 				EB97BDBD26B7C0E900200F0A /* LaunchScreen.storyboard */,
 				EB97BDC026B7C0E900200F0A /* Info.plist */,
+				EB963F8226B8D22300B34C19 /* GoogleService-Info.plist */,
 			);
 			path = LetsMeet;
+			sourceTree = "<group>";
+		};
+		EBE2FF3E26BBED4200295DBA /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				EB36E21226BB75B3002FFF1F /* RegisterViewController.swift */,
+				EB36E20F26BB7587002FFF1F /* WelcomeViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		EBE2FF3F26BBED5500295DBA /* FirebaseServices */ = {
+			isa = PBXGroup;
+			children = (
+				EBE2FF3B26BBE87900295DBA /* FUser.swift */,
+			);
+			path = FirebaseServices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -74,9 +123,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EB97BDC326B7C0E900200F0A /* Build configuration list for PBXNativeTarget "LetsMeet" */;
 			buildPhases = (
+				C9AF8C0E6B544C3A7192B0C5 /* [CP] Check Pods Manifest.lock */,
 				EB97BDAB26B7C0E700200F0A /* Sources */,
 				EB97BDAC26B7C0E700200F0A /* Frameworks */,
 				EB97BDAD26B7C0E700200F0A /* Resources */,
+				25FFBB436B15FF158EE4A9BB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -124,6 +175,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EB963F8326B8D22300B34C19 /* GoogleService-Info.plist in Resources */,
 				EB97BDBF26B7C0E900200F0A /* LaunchScreen.storyboard in Resources */,
 				EB97BDBC26B7C0E900200F0A /* Assets.xcassets in Resources */,
 				EB97BDBA26B7C0E700200F0A /* Main.storyboard in Resources */,
@@ -132,14 +184,58 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		25FFBB436B15FF158EE4A9BB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LetsMeet/Pods-LetsMeet-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-LetsMeet/Pods-LetsMeet-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-LetsMeet/Pods-LetsMeet-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C9AF8C0E6B544C3A7192B0C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-LetsMeet-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		EB97BDAB26B7C0E700200F0A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EB97BDB726B7C0E700200F0A /* ViewController.swift in Sources */,
+				EBE2FF3C26BBE87900295DBA /* FUser.swift in Sources */,
+				EB36E21026BB7587002FFF1F /* WelcomeViewController.swift in Sources */,
 				EB97BDB326B7C0E700200F0A /* AppDelegate.swift in Sources */,
 				EB97BDB526B7C0E700200F0A /* SceneDelegate.swift in Sources */,
+				EB36E21326BB75B3002FFF1F /* RegisterViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -283,6 +379,7 @@
 		};
 		EB97BDC426B7C0E900200F0A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F251137C39D8360768E2291 /* Pods-LetsMeet.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -296,12 +393,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tanvirgeek.LetsMeet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		EB97BDC526B7C0E900200F0A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 08A427A1EAE70F072D4A8C16 /* Pods-LetsMeet.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -315,7 +413,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.tanvirgeek.LetsMeet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
