@@ -33,7 +33,6 @@ class RegisterViewController: UIViewController {
     //MARK:- IBActions
     @IBAction func registerButtonPressed(_ sender: UIButton) {
         if isTextDataImputed(){
-            //do register
             if let password = passwordTextField.text, let confirmPassword = confirmPasswordTextField.text{
                 if password == confirmPassword{
                     registerUser()
@@ -88,6 +87,7 @@ class RegisterViewController: UIViewController {
                     ProgressHUD.showError(error.localizedDescription)
                 }else{
                     ProgressHUD.showSuccess("Verification email sent!")
+                    self.dismiss(animated: true, completion: nil)
                 }
             }
         }

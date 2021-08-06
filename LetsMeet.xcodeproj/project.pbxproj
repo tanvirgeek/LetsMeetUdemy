@@ -10,6 +10,7 @@
 		DDEDA0266E8FB5A6BFC99D1E /* Pods_LetsMeet.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CC59DF4BF1EB0B78028F30F5 /* Pods_LetsMeet.framework */; };
 		EB36E21026BB7587002FFF1F /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB36E20F26BB7587002FFF1F /* WelcomeViewController.swift */; };
 		EB36E21326BB75B3002FFF1F /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB36E21226BB75B3002FFF1F /* RegisterViewController.swift */; };
+		EB516A4B26BCD02900B90CD7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB516A4A26BCD02900B90CD7 /* Constants.swift */; };
 		EB963F8326B8D22300B34C19 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = EB963F8226B8D22300B34C19 /* GoogleService-Info.plist */; };
 		EB97BDB326B7C0E700200F0A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB97BDB226B7C0E700200F0A /* AppDelegate.swift */; };
 		EB97BDB526B7C0E700200F0A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB97BDB426B7C0E700200F0A /* SceneDelegate.swift */; };
@@ -25,6 +26,7 @@
 		CC59DF4BF1EB0B78028F30F5 /* Pods_LetsMeet.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LetsMeet.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB36E20F26BB7587002FFF1F /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		EB36E21226BB75B3002FFF1F /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		EB516A4A26BCD02900B90CD7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EB963F8226B8D22300B34C19 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		EB97BDAF26B7C0E700200F0A /* LetsMeet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LetsMeet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB97BDB226B7C0E700200F0A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -65,6 +67,14 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		EB516A4926BCD01700B90CD7 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				EB516A4A26BCD02900B90CD7 /* Constants.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		EB97BDA626B7C0E700200F0A = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +96,7 @@
 		EB97BDB126B7C0E700200F0A /* LetsMeet */ = {
 			isa = PBXGroup;
 			children = (
+				EB516A4926BCD01700B90CD7 /* Utilities */,
 				EBE2FF3F26BBED5500295DBA /* FirebaseServices */,
 				EBE2FF3E26BBED4200295DBA /* Controllers */,
 				EB97BDB226B7C0E700200F0A /* AppDelegate.swift */,
@@ -236,6 +247,7 @@
 				EB97BDB326B7C0E700200F0A /* AppDelegate.swift in Sources */,
 				EB97BDB526B7C0E700200F0A /* SceneDelegate.swift in Sources */,
 				EB36E21326BB75B3002FFF1F /* RegisterViewController.swift in Sources */,
+				EB516A4B26BCD02900B90CD7 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
