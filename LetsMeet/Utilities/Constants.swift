@@ -27,7 +27,7 @@ class k {
     static let lookingfor = "lookingFor"
     static let avatarLink = "avatarLink"
     static let likedArray = "likedArray"
-    static let imageLink = "imageLink"
+    static let imageLinks = "imageLinks"
     static let registerDate = "registerDate"
     static let pushId = "pushedId"
     

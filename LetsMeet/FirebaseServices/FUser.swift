@@ -29,7 +29,7 @@ class FUser:Equatable{
     var avatarLink:String
     
     var likedArray:[String]?
-    var imageLink:[String]?
+    var imageLinks:[String]?
     let registeredDate = Date()
     var pushId : String?
     
@@ -49,7 +49,7 @@ class FUser:Equatable{
                                     self.lookingfor,
                                     self.avatarLink,
                                     self.likedArray ?? [],
-                                    self.imageLink ?? [],
+                                    self.imageLinks ?? [],
                                     self.registeredDate,
                                     self.pushId ?? ""
             
@@ -68,7 +68,7 @@ class FUser:Equatable{
                                     k.lookingfor as NSCopying,
                                     k.avatarLink as NSCopying,
                                     k.likedArray as NSCopying,
-                                    k.imageLink as NSCopying,
+                                    k.imageLinks as NSCopying,
                                     k.registerDate as NSCopying,
                                     k.pushId as NSCopying
             ])
@@ -90,10 +90,55 @@ class FUser:Equatable{
         self.height = 0.0
         self.lookingfor = ""
         self.likedArray = []
-        self.imageLink = []
+        self.imageLinks = []
+    }
+    
+    init(_dictionary:NSDictionary){
+        self.objectId = _dictionary[k.objectId] as? String ?? ""
+        self.email = _dictionary[k.email] as? String ?? ""
+        self.userName = _dictionary[k.username] as? String ?? ""
+        self.isMale = _dictionary[k.isMale] as? Bool ?? true
+        self.city = _dictionary[k.city] as? String ?? ""
+        self.avatarLink = _dictionary[k.avatarLink] as? String ?? ""
+        self.profession = _dictionary[k.profession] as? String ?? ""
+        self.jobTitle = _dictionary[k.jobTitle] as? String ?? ""
+        self.about = _dictionary[k.about] as? String ?? ""
+        self.country = _dictionary[k.country] as? String ?? ""
+        self.height = _dictionary[k.height] as? Double ?? 0.0
+        self.lookingfor = _dictionary[k.lookingfor] as? String ?? ""
+        self.likedArray = _dictionary[k.likedArray] as? [String]
+        self.imageLinks = _dictionary[k.imageLinks] as? [String]
+        
+        if let date = _dictionary[k.dateOfBirth] as? Timestamp{
+            self.dateOfBirth = date.dateValue()
+        }else{
+            self.dateOfBirth = _dictionary[k.dateOfBirth] as? Date ?? Date()
+        }
+        
     }
     
     
+    //MARK:- Login
+    class func loginWith(email:String, password:String, completion:@escaping (_ error:Error?, _ isEmailVerified:Bool)->Void){
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (authResult, error) in
+            if let error = error{
+                completion(error,false)
+            }else if let signInResult = authResult{
+                if signInResult.user.isEmailVerified{
+                    //check if user exists in firebase
+                    FirebaseListener.shared.downLoadCurrentUserFromFirebase(userId: signInResult.user.uid, email: email)
+                    completion(error,true)
+                }else{
+                    completion(error, false)
+                    print("email not verified")
+                }
+            }
+        }
+        
+    }
+    
+    //MARK:- Register
     class func registerUserWith(email:String,password:String,username:String,city:String,isMale:Bool,dateOfBirth:Date, completion:@escaping (_ error:Error?)->Void){
         
         Auth.auth().createUser(withEmail: email, password: password) { (authData, authError) in
@@ -122,9 +167,29 @@ class FUser:Equatable{
         
     }
     
+    //MARK:- resetPassword
+    class func resetPasswordFor(email:String, completion:@escaping(_ error:Error?)->Void){
+        
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            completion(error)
+        }
+        
+    }
+    
     func saveUserLocally(){
         k.userDefaults.setValue(self.userDictionary as! [String:Any], forKey: k.currentUser)
         k.userDefaults.synchronize()
+    }
+    
+    func saveUserToFireStore(){
+        firebaseReference(.User).document(self.objectId).setData(self.userDictionary as! [String : Any]){ error in
+            
+            if let error = error{
+                print("Saving user to fireStore error: \(error.localizedDescription)")
+            }else{
+                print("Data saved to Firestore")
+            }
+        }
     }
     
 }

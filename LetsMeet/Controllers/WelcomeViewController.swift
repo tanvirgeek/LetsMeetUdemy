@@ -29,15 +29,36 @@ class WelcomeViewController: UIViewController {
             ProgressHUD.showError("Please insert your email address.")
         }else{
             // do forgot password
+            FUser.resetPasswordFor(email: emailTextField.text!) { (error) in
+                if let err = error{
+                    ProgressHUD.showError(err.localizedDescription)
+                }else{
+                    ProgressHUD.showSuccess("Please check your email")                }
+            }
         }
     }
     
     @IBAction func loginButtonPressed(_ sender: UIButton) {
-        if emailTextField.text == "" || passwordTextField.text == ""{
-            ProgressHUD.showError("All fields are required")
-        }else{
-            //do login
+        if let email = emailTextField.text, let password = passwordTextField.text{
+            if emailTextField.text == "" || passwordTextField.text == ""{
+                ProgressHUD.showError("All fields are required")
+            }else{
+                //do login
+                FUser.loginWith(email: email, password: password) { (loginError, isEmailVerified) in
+                    if let loginError = loginError{
+                        ProgressHUD.showError(loginError.localizedDescription)
+                    }else{
+                        if isEmailVerified{
+                            //enter the application
+                            print("Go to app")
+                        }else{
+                            ProgressHUD.showError("Email is not verified")
+                        }
+                    }
+                }
+            }
         }
+        
     }
     
     //MARK:- setup
