@@ -15,7 +15,7 @@ class RegisterViewController: UIViewController {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var genderSegmentedControll: UISegmentedControl!
-    @IBOutlet weak var dateOfBirthTextField: UITextField!
+    @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var confirmPasswordTextField: UITextField!
     @IBOutlet weak var backgroundImageView: UIImageView!
@@ -28,6 +28,7 @@ class RegisterViewController: UIViewController {
         super.viewDidLoad()
         setupBackgroundTouch()
         overrideUserInterfaceStyle = .dark
+        //datePicker.datePickerMode = .date
     }
     
     //MARK:- IBActions
@@ -75,14 +76,15 @@ class RegisterViewController: UIViewController {
     }
     
     private func isTextDataImputed()->Bool{
-        return usernameTextField.text != "" && emailTextField.text != "" && cityTextField.text != "" && dateOfBirthTextField.text != "" && passwordTextField.text != "" && confirmPasswordTextField.text != ""
+        return usernameTextField.text != "" && emailTextField.text != "" && cityTextField.text != "" && passwordTextField.text != "" && confirmPasswordTextField.text != ""
     }
     
     private func registerUser(){
+        //print(datePicker.date)
         ProgressHUD.show()
         if let email = emailTextField.text, let password = passwordTextField.text, let username = usernameTextField.text, let city = cityTextField.text{
-            FUser.registerUserWith(email: email, password: password, username: username, city: city, isMale: isMale, dateOfBirth: Date()) { error in
-                
+            FUser.registerUserWith(email: email, password: password, username: username, city: city, isMale: isMale, dateOfBirth: datePicker.date) { error in
+
                 if let error = error{
                     ProgressHUD.showError(error.localizedDescription)
                 }else{

@@ -44,6 +44,7 @@ class WelcomeViewController: UIViewController {
                 ProgressHUD.showError("All fields are required")
             }else{
                 //do login
+                ProgressHUD.show()
                 FUser.loginWith(email: email, password: password) { (loginError, isEmailVerified) in
                     if let loginError = loginError{
                         ProgressHUD.showError(loginError.localizedDescription)
@@ -52,6 +53,7 @@ class WelcomeViewController: UIViewController {
                             //enter the application
                             print("Go to app")
                             self.goToApp()
+                            ProgressHUD.dismiss()
                         }else{
                             ProgressHUD.showError("Email is not verified")
                         }
