@@ -117,6 +117,19 @@ class FUser:Equatable{
         
     }
     
+    //MARK:- Returning Current User
+    class func currentUserId()->String?{
+        return Auth.auth().currentUser?.uid
+    }
+    class func currentUser()->FUser?{
+        if currentUserId() != nil{
+            if let userDictionary = k.userDefaults.object(forKey: k.currentUser){
+                return FUser(_dictionary: userDictionary as! NSDictionary)
+            }
+        }
+        return nil
+    }
+    
     
     //MARK:- Login
     class func loginWith(email:String, password:String, completion:@escaping (_ error:Error?, _ isEmailVerified:Bool)->Void){
