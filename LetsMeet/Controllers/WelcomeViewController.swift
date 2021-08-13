@@ -23,7 +23,7 @@ class WelcomeViewController: UIViewController {
         setupBackgroundTouch()
     }
     
-    //MARK:- IBactions
+    //MARK:- IBActions
     @IBAction func forgotPasswordButtonPressed(_ sender: UIButton) {
         if emailTextField.text == ""{
             ProgressHUD.showError("Please insert your email address.")
@@ -33,7 +33,8 @@ class WelcomeViewController: UIViewController {
                 if let err = error{
                     ProgressHUD.showError(err.localizedDescription)
                 }else{
-                    ProgressHUD.showSuccess("Please check your email")                }
+                    ProgressHUD.showSuccess("Please check your email")
+                }
             }
         }
     }

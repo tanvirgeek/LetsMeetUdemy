@@ -115,6 +115,9 @@ class FUser:Equatable{
             self.dateOfBirth = _dictionary[k.dateOfBirth] as? Date ?? Date()
         }
         
+        let placeHolder = isMale ? "mPlaceholder":"fPlaceholder"
+        avatar = UIImage(named: placeHolder)
+        
     }
     
     //MARK:- Returning Current User
@@ -177,7 +180,6 @@ class FUser:Equatable{
                 }
             }
         }
-        
     }
     
     //MARK:- resetPassword
