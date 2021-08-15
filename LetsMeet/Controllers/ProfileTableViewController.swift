@@ -80,8 +80,9 @@ class ProfileTableViewController: UITableViewController {
                     self.loadUserData()
                     ProgressHUD.dismiss()
                 }
-                // Save User
-                
+//                // Save User
+//                self.saveUserData(withUser: user)
+//                self.loadUserData()
             }else{
                 //save
                 saveUserData(withUser: user)
@@ -114,6 +115,10 @@ class ProfileTableViewController: UITableViewController {
     //MARK:- LoadUserData
     func loadUserData(){
         if let currenUser = FUser.currentUser(){
+            
+            FileStorage.downloadImage(imageURL: currenUser.avatarLink) { (image) in
+                
+            }
             nameAgeLabel.text = currenUser.userName + " " + "\(currenUser.dateOfBirth.interval(ofComponent: .year, fromDate: Date()))"
             cityCountryLabel.text = currenUser.country + " " + currenUser.city
             aboutMeTextField.text = currenUser.about == "".trimmingCharacters(in: .whitespaces) ? "A little bit about me" : currenUser.about
@@ -123,7 +128,7 @@ class ProfileTableViewController: UITableViewController {
             countryTextField.text = currenUser.country
             heightTextField.text = "\(currenUser.height)"
             lookingForTextField.text = currenUser.lookingfor
-            avatarImageView.image = UIImage(named: "avatar")
+            avatarImageView.image = currenUser.avatar
             professionTextField.text = currenUser.profession
         }
     }
@@ -160,6 +165,10 @@ class ProfileTableViewController: UITableViewController {
         if let userId = FUser.currentUserId(){
             let fileDirectory = "Avatars/_" + userId + ".jpg"
             FileStorage.uploadImage(image, directory: fileDirectory) { (avatarLink) in
+                
+                ProgressHUD.dismiss()
+                //saveFileLocally
+                FileStorage.saveImageLocally(imageData: image.jpegData(compressionQuality: 0.8)! as NSData, fileName: FUser.currentUserId()!)
                 completion(avatarLink)
             }
         }else{

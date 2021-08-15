@@ -116,7 +116,8 @@ class FUser:Equatable{
         }
         
         let placeHolder = isMale ? "mPlaceholder":"fPlaceholder"
-        avatar = UIImage(named: placeHolder)
+        avatar =  UIImage(contentsOfFile: fileInDocumentsDirectory(fileName: self.objectId)) ?? UIImage(named: placeHolder)
+        print("Avatar: \(avatar)")
         
     }
     
@@ -133,6 +134,14 @@ class FUser:Equatable{
         return nil
     }
     
+    func getUserAvatarFromFireStore(completion:@escaping (_ didset:Bool) -> Void){
+        FileStorage.downloadImage(imageURL: self.avatarLink) { (avatarImage) in
+            
+            let placeholder = self.isMale ? "mPlaceholder":"fPlaceholder"
+            self.avatar = avatarImage ?? UIImage(named: placeholder)
+            completion(true)
+        }
+    }
     
     //MARK:- Login
     class func loginWith(email:String, password:String, completion:@escaping (_ error:Error?, _ isEmailVerified:Bool)->Void){
