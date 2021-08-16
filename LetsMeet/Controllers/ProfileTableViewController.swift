@@ -180,6 +180,12 @@ class ProfileTableViewController: UITableViewController {
     private func upLoadImages(images:[UIImage?]){
         ProgressHUD.show()
         print("Uploading Images")
+        FileStorage.uploadImages(images) { (imageLinkArray) in
+            let currentUser = FUser.currentUser()!
+            currentUser.imageLinks = imageLinkArray
+            self.saveUserData(withUser: currentUser)
+            ProgressHUD.dismiss()
+        }
     }
     
     //MARK:- Gallery

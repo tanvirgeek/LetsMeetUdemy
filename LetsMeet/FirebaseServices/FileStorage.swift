@@ -49,6 +49,34 @@ class FileStorage{
         
     }
     
+    
+    class func downloadImages(imageURLs:[String], completion:@escaping(_ images:[UIImage?])->Void){
+        var imageArray : [UIImage] = []
+        var downloadCounter = 0
+        for link in imageURLs{
+            let url = NSURL(string: link)
+            
+            let downloadQueue = DispatchQueue(label: "downloadQueue")
+            downloadQueue.async {
+                
+                downloadCounter += 1
+                let data = NSData(contentsOf: url! as URL)
+                if let data = data {
+                    if let image = UIImage(data: data as Data){
+                        imageArray.append(image)
+                        if downloadCounter == imageURLs.count{
+                            completion(imageArray)
+                        }
+                    }
+                }else{
+                    print("No image in database")
+                    completion(imageArray)
+                }
+            }
+        }
+    }
+    
+    
     class func uploadImage(_ image:UIImage, directory:String, completion: @escaping (_ documentLink:String?)->Void){
         let storageRef = Storage.storage().reference().child(directory)
         guard let imageData = image.jpegData(compressionQuality: 0.6)else {return}
@@ -70,6 +98,30 @@ class FileStorage{
                 }
             }
         })
+    }
+    
+    class func uploadImages(_ images:[UIImage?],completion: @escaping (_ documentLinks:[String])->Void){
+        
+        var uploadImageCount = 0
+        var imageLinkArray:[String] = []
+        var nameSuffix = 0
+        
+        for image in images{
+            let fileDirectory = "UserImages/" + FUser.currentUserId()! + "/" + "\(nameSuffix)" + ".jpg"
+            if let image = image{
+                uploadImage(image, directory: fileDirectory) { (imageLink) in
+                    if let imageLink = imageLink{
+                        imageLinkArray.append(imageLink)
+                        uploadImageCount += 1
+                        
+                        if uploadImageCount == images.count{
+                            completion(imageLinkArray)
+                        }
+                    }
+                }
+            }
+            nameSuffix += 1
+        }
     }
     
     class func saveImageLocally(imageData:NSData, fileName:String){
