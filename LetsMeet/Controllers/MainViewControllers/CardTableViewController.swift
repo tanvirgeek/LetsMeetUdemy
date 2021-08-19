@@ -7,6 +7,7 @@
 
 import UIKit
 import ProgressHUD
+import Kingfisher
 
 class CardTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource{
     
@@ -38,8 +39,20 @@ class CardTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = userTableView.dequeueReusableCell(withIdentifier: "userCell") as! MyUserTableViewCell
-        cell.userImageView.image = UIImage(named: "user1")
-        cell.ageLabel.text = "26"
+        
+        let imageLink = cards[indexPath.row].avatarLink ?? ""
+        print("imageLink: \(imageLink)")
+//        FileStorage.downloadUserImage(imageURL: imageLink) { (image) in
+//            if let image = image{
+//                DispatchQueue.main.async {
+//                    print("image:\(image)")
+//                    cell.userImageView.image = image
+//                }
+//            }
+//        }
+        let url = URL(string: imageLink)
+        cell.userImageView.kf.setImage(with: url)
+        cell.ageLabel.text = "\(cards[indexPath.row].dateOfBirth.interval(ofComponent: .year, fromDate: Date()))"
         cell.nameLabel.text = cards[indexPath.row].username
         cell.professionLabel.text = cards[indexPath.row].profession
         return cell
@@ -81,8 +94,11 @@ class CardTableViewController: UIViewController, UITableViewDelegate, UITableVie
             FileStorage.uploadImage(UIImage(named: "user\(imageIndex)")!, directory: fileDirectory) { (avatarLink) in
                 let user = FUser(_objectId: id, _email: "user\(userIndex)", _userName: names[i], _dateOfBirth: Date(), _isMale: false, _city: "No City", _avatarLink: avatarLink ?? "")
                 userIndex += 1
+                
                 user.saveUserToFireStore()
+                
             }
+            imageIndex += 1
             if imageIndex == 16{
                 imageIndex = 1
             }

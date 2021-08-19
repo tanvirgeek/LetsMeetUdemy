@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-struct UserCardModel:Codable{
+struct UserCardModel{
     let objectId:String
     let username:String
     let dateOfBirth:Date

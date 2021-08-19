@@ -348,6 +348,7 @@ PODS:
   - InputBarAccessoryView (5.3.1):
     - InputBarAccessoryView/Core (= 5.3.1)
   - InputBarAccessoryView/Core (5.3.1)
+  - Kingfisher (6.3.1)
   - leveldb-library (1.22)
   - MessageKit (3.6.1):
     - InputBarAccessoryView (~> 5.3.1)
@@ -371,6 +372,7 @@ DEPENDENCIES:
   - Firebase/Storage
   - Gallery
   - InputBarAccessoryView
+  - Kingfisher
   - MessageKit
   - NVActivityIndicatorView/AppExtension
   - ProgressHUD
@@ -399,6 +401,7 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - InputBarAccessoryView
+    - Kingfisher
     - leveldb-library
     - MessageKit
     - nanopb
@@ -429,6 +432,7 @@ SPEC CHECKSUMS:
   gRPC-Core: 4afa11bfbedf7cdecd04de535a9e046893404ed5
   GTMSessionFetcher: b3503b20a988c4e20cc189aa798fd18220133f52
   InputBarAccessoryView: 1f75d8c9f75e5e57f3ffac36ed58635a8005e0bc
+  Kingfisher: 016c8b653a35add51dd34a3aba36b580041acc74
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
   MessageKit: d153fbbbcb12f3f4045a1ba8874298924dacfb62
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
@@ -438,6 +442,6 @@ SPEC CHECKSUMS:
   Shuffle-iOS: ff33658fb1e5eebd6a4724c156473e63754be9cb
   SKPhotoBrowser: 6aaa8f232752e87c7e76bace183bead0a137097d
 
-PODFILE CHECKSUM: eb363ae71de20819e0b38590033fea53704cf986
+PODFILE CHECKSUM: dbe054e1dd20ad77ec08ad0ee42cdd2c0f3d52fb
 
 COCOAPODS: 1.10.1

@@ -13,6 +13,25 @@ import FirebaseStorage
 
 class FileStorage{
     
+    class func downloadUserImage(imageURL:String, completion:@escaping(_ image:UIImage?)->Void){
+        if imageURL != ""{
+            let documentURL = URL(string: imageURL)
+            let downloadQueue = DispatchQueue(label: "downloadQueue")
+            downloadQueue.async {
+                let data = NSData(contentsOf: documentURL!)
+                if let data = data {
+                    let imagetoReturn = UIImage(data: data as Data)
+                    completion(imagetoReturn)
+                }else{
+                    print("No image in database")
+                    completion(nil)
+                }
+            }
+        }else{
+            completion(nil)
+        }
+    }
+    
     class func downloadImage(imageURL:String, completion:@escaping(_ image:UIImage?)->Void){
         //let imageFileNameCurrentUser = FUser.currentUserId()
         let imageFileName = imageURL.components(separatedBy: "_").last!.components(separatedBy: "?").first!.components(separatedBy: ".").first!
