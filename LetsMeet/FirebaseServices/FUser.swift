@@ -200,6 +200,41 @@ class FUser:Equatable{
         
     }
     
+    //MARK:- Resend Verification Email
+    class func resendVerificationEmail(email:String, completion:@escaping (_ error:Error?)->Void){
+        Auth.auth().currentUser?.reload(completion: { (erro) in
+            Auth.auth().currentUser?.sendEmailVerification(completion: { (error) in
+                completion(error)
+            })
+        })
+    }
+    
+    class func logOutCurrentUser(completion:@escaping (_ error:Error?)->Void){
+        do{
+            try Auth.auth().signOut()
+            k.userDefaults.removeObject(forKey: k.currentUser)
+            k.userDefaults.synchronize()
+            completion(nil)
+        }catch let error as NSError{
+            completion(error)
+        }
+        
+    }
+    
+    //MARK:- EditUserProfile
+    func updateUserEmail(newEmail:String,completion:@escaping (_ error:Error?)->Void){
+        Auth.auth().currentUser?.updateEmail(to: newEmail, completion: { (emailUpdatingError) in
+            if let error = emailUpdatingError{
+                print(error)
+                completion(emailUpdatingError)
+            }else{
+                FUser.resendVerificationEmail(email: newEmail) { (resendVerificationError) in
+                    completion(resendVerificationError)
+                }
+            }
+        })
+    }
+    
     func saveUserLocally(){
         k.userDefaults.setValue(self.userDictionary as! [String:Any], forKey: k.currentUser)
         k.userDefaults.synchronize()

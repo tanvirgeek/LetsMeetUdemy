@@ -31,6 +31,7 @@ class ProfileTableViewController: UITableViewController {
     var uploadingAvatar = true
     var avatarImage:UIImage?
     var gallery:GalleryController!
+    var alertTextField:UITextField!
     
     //MARK:- ViewLifeCycle
     override func viewDidLoad() {
@@ -128,7 +129,7 @@ class ProfileTableViewController: UITableViewController {
             countryTextField.text = currenUser.country
             heightTextField.text = "\(currenUser.height)"
             lookingForTextField.text = currenUser.lookingfor
-            avatarImageView.image = currenUser.avatar
+            avatarImageView.image = currenUser.avatar?.circlemasked
             professionTextField.text = currenUser.profession
         }
     }
@@ -218,18 +219,82 @@ class ProfileTableViewController: UITableViewController {
         let alertController = UIAlertController(title: "Edit Account", message: "You are about to change sensitive information", preferredStyle: .actionSheet)
         alertController.addAction(UIAlertAction(title: "Change Email", style: .default, handler: { (alert) in
             // change Email
+            self.showChangeField(value: "Email")
         }))
         alertController.addAction(UIAlertAction(title: "Upload Name", style: .default, handler: { (alert) in
             // change name
+            self.showChangeField(value: "Name")
         }))
         alertController.addAction(UIAlertAction(title: "Log Out", style: .destructive, handler: { (alert) in
             // Log Out
+            self.logOut()
+            
         }))
         alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         
         self.present(alertController, animated: true, completion: nil)
     }
     
+    private func showChangeField(value:String){
+        let alerView = UIAlertController(title: "Updating \(value)", message: "Please write your \(value)", preferredStyle: .alert)
+        alerView.addTextField { (textField) in
+            self.alertTextField = textField
+            self.alertTextField.placeholder = "New \(value)"
+        }
+        alerView.addAction(UIAlertAction(title: "Update", style: .destructive, handler: { (action) in
+            print("Updating \(value)")
+            self.updateUserWith(field: value)
+        }))
+        alerView.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        self.present(alerView, animated: true, completion: nil)
+    }
+    
+    //MARK:- Change User Info
+    private func updateUserWith(field:String){
+        if alertTextField.text == ""{
+            ProgressHUD.showError("\(field) is empty")
+        }else{
+            field == "Email" ? changeEmail() : changeUsername()
+        }
+    }
+    
+    private func changeEmail(){
+        FUser.currentUser()?.updateUserEmail(newEmail: alertTextField.text!, completion: { (error) in
+            if let error = error{
+                ProgressHUD.showError(error.localizedDescription)
+            }else{
+                if let currentUser = FUser.currentUser(){
+                    currentUser.email = self.alertTextField.text!
+                    self.saveUserData(withUser: currentUser)
+                }
+                ProgressHUD.showSuccess("Success")
+            }
+        })
+    }
+    
+    private func changeUsername(){
+        if let currentUser = FUser.currentUser(){
+            currentUser.userName = alertTextField.text!
+            saveUserData(withUser: currentUser)
+            loadUserData()
+        }
+    }
+    //MARK:- LogOut
+    
+    private func logOut(){
+        FUser.logOutCurrentUser { (logOutError) in
+            if let error = logOutError{
+                ProgressHUD.showError(error.localizedDescription)
+            }else{
+                let loginView = UIStoryboard.init(name: "Main", bundle: nil).instantiateViewController(identifier: "loginView")
+                
+                DispatchQueue.main.async {
+                    loginView.modalPresentationStyle = .fullScreen
+                    self.present(loginView, animated: true, completion: nil)
+                }
+            }
+        }
+    }
     
 }
 
@@ -241,7 +306,7 @@ extension ProfileTableViewController: GalleryControllerDelegate{
                     if icon != nil{
                         self.editingMode = true
                         self.showSaveButton()
-                        self.avatarImageView.image = icon
+                        self.avatarImageView.image = icon?.circlemasked
                         self.avatarImage = icon
                     }
                     else{

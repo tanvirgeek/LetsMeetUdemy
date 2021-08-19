@@ -12,6 +12,8 @@ pod 'Firebase/Firestore'
 pod 'Firebase/Storage'
 pod 'Firebase/Analytics'
 pod 'Firebase/Messaging'
+pod 'FirebaseFirestoreSwift'
+
 
 pod 'Gallery'
 
