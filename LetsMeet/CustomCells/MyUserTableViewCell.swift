@@ -13,6 +13,10 @@ class MyUserTableViewCell: UITableViewCell {
     @IBOutlet weak var ageLabel: UILabel!
     @IBOutlet weak var professionLabel: UILabel!
     @IBOutlet weak var userImageView: UIImageView!
+    
+    @IBOutlet weak var dislikeButton: UIButton!
+    @IBOutlet weak var likeButton: UIButton!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,5 +27,7 @@ class MyUserTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    
+    
 
 }

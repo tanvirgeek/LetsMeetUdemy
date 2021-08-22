@@ -55,14 +55,20 @@ class CardTableViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.ageLabel.text = "\(cards[indexPath.row].dateOfBirth.interval(ofComponent: .year, fromDate: Date()))"
         cell.nameLabel.text = cards[indexPath.row].username
         cell.professionLabel.text = cards[indexPath.row].profession
+        cell.likeButton.tag = indexPath.row
+        cell.dislikeButton.tag = indexPath.row
+        cell.likeButton.addTarget(self, action: #selector(likeButtonPressed), for: .touchUpInside)
+        cell.dislikeButton.addTarget(self, action: #selector(disLikeButtonPressed), for: .touchUpInside)
         return cell
     }
+    
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
             // Trigger pagination when scrolled to last cell
             // Feel free to adjust when you want pagination to be triggered
             if (indexPath.row == cards.count - 1) {
-                FirebaseListener.shared.paginate { (err, cards) in
+                
+                FirebaseListener.shared.paginate(lastObjectId: cards[indexPath.row].objectId) { (err, cards) in
                     if let err = err{
                         ProgressHUD.showError(err.localizedDescription)
                     }
@@ -74,11 +80,37 @@ class CardTableViewController: UIViewController, UITableViewDelegate, UITableVie
             }
     }
     
-    //MARK:- IBActions
-    @IBAction func likeButtonPressed(_ sender: UIButton) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let userId = cards[indexPath.row].objectId
+        showUserProfileFor(userId: userId)
     }
-    @IBAction func dislikeButtonPressed(_ sender: UIButton) {
+    //MARK:- Navigation
+    private func showUserProfileFor(userId:String){
+        ProgressHUD.show()
+        let profileView = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(identifier: "ProfileTableView") as!UserProfileTableViewController
+        FirebaseListener.shared.downloadUserWith(userId: userId) { (error, user) in
+            if let err = error{
+                ProgressHUD.showError(err.localizedDescription)
+            }
+            if let user = user{
+                ProgressHUD.dismiss()
+                profileView.userObject = user
+                self.present(profileView, animated: true, completion: nil)
+            }
+        }
+        
     }
+    
+    //MARK:- Like and DislikeButton Pressed
+    @objc func likeButtonPressed(sender:UIButton){
+        print(sender.tag)
+    }
+    @objc func disLikeButtonPressed(sender:UIButton){
+        print(sender.tag)
+    }
+    
+    
+    
     
     //MARK:- CreateUsers
     private func createUsers(){

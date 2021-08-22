@@ -12,6 +12,9 @@ class FirebaseListener{
     static let shared = FirebaseListener()
     var query:Query = firebaseReference(.User).limit(to: 4)
     var documents = [QueryDocumentSnapshot]()
+    var reachedLast = false
+    var reachedLastCalls = 0
+    var newDataArrived = 0
     private init(){}
     
     //MARK:- download FUser
@@ -30,6 +33,24 @@ class FirebaseListener{
                     if let user = k.userDefaults.object(forKey: k.currentUser){
                         FUser(_dictionary: user as! NSDictionary).saveUserToFireStore()
                     }
+                }
+            }
+        }
+    }
+    
+    func downloadUserWith(userId:String,completion:@escaping (_ error:Error?, _ user:FUser?)->Void){
+        firebaseReference(.User).document(userId).getDocument { (snapShot, downLoadError) in
+            if let error = downLoadError{
+                print(error.localizedDescription)
+                completion(downLoadError,nil)
+            }
+            if let snap = snapShot{
+                if snap.exists{
+                    let user = FUser(_dictionary: snap.data()! as NSDictionary)
+                    completion(nil,user)
+                }else{
+                    print("NO USER AVAILABLE")
+                    completion(nil,nil)
                 }
             }
         }
@@ -59,14 +80,31 @@ class FirebaseListener{
         }
     }
     
-    func paginate(completion:@escaping (_ error:Error?,_ cards:[UserCardModel]?)->Void) {
+    func paginate(lastObjectId:String,completion:@escaping (_ error:Error?,_ cards:[UserCardModel]?)->Void) {
+        
         //This line is the main pagination code.
         //Firestore allows you to fetch document from the last queryDocument
-        print("document:\(documents.last![k.username])")
-        self.query = query.start(afterDocument: documents.last!)
-        print("Query:\(query)")
-        getUserCardsFromFirebase { (error, cards) in
-            completion(error,cards)
+        //print("document:\(documents.last![k.username])")
+        if reachedLast{
+            print("ObjectID FromSnapShot:",documents.last![k.objectId] as! String)
+            print("ObjectID From Table View:",lastObjectId)
+            print("Same data")
+            reachedLastCalls += 1
+            print("reachedLastCalls:",reachedLastCalls)
+        }else{
+            self.query = query.start(afterDocument: documents.last!)
+            print("Query:\(query)")
+            getUserCardsFromFirebase { (error, cards) in
+                
+                if self.documents.last![k.objectId] as! String == lastObjectId {
+                    self.reachedLast = true
+                    print("reachedLast",self.reachedLast)
+                }
+                completion(error,cards)
+                self.newDataArrived += 1
+                print("newDataArived",self.newDataArrived)
+            }
         }
+        
     }
 }
